@@ -1,3 +1,4 @@
+import sys
 from stats import word_count
 from stats import character_count
 from stats import listed_count
@@ -10,14 +11,19 @@ def get_book_text(filepath):
         return file_contents
 
 def main():
-    frankenstein = get_book_text("books/frankenstein.txt")
-    num_of_words = word_count(frankenstein)
+    #frankenstein = get_book_text("books/frankenstein.txt")
+    #num_of_words = word_count(frankenstein)
     #print(f"Found {num_of_words} total words")
-    num_of_characters = character_count(frankenstein)
+    #num_of_characters = character_count(frankenstein)
     #print(num_of_characters)
+    print("Usage: python3 main.py <path_to_book>")
+    
+    book = get_book_text(sys.argv[1])
+    num_of_words = word_count(book)
+    num_of_characters = character_count(book)
     ordered_count = listed_count(num_of_characters)
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {sys.argv[1]}...")
     print("----------- Word Count ----------")
     print(f"Found {num_of_words} total words")
     print("--------- Character Count -------")
@@ -25,4 +31,6 @@ def main():
         if item["character"].isalpha():
             print(f"{item["character"]}: {item["count"]}")
     print("============= END ===============")
+    sys.exit(1)
+#print(sys.argv)
 main()
