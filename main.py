@@ -16,8 +16,9 @@ def main():
     #print(f"Found {num_of_words} total words")
     #num_of_characters = character_count(frankenstein)
     #print(num_of_characters)
-    print("Usage: python3 main.py <path_to_book>")
-    
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
     book = get_book_text(sys.argv[1])
     num_of_words = word_count(book)
     num_of_characters = character_count(book)
@@ -29,8 +30,9 @@ def main():
     print("--------- Character Count -------")
     for item in ordered_count:
         if item["character"].isalpha():
-            print(f"{item["character"]}: {item["count"]}")
+            print(f"{item['character']}: {item['count']}")
     print("============= END ===============")
-    sys.exit(1)
+    sys.exit(0)
+    
 #print(sys.argv)
 main()
